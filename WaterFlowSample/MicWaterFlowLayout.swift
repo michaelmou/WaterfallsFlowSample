@@ -10,7 +10,8 @@ import UIKit
 
 class MicWaterFlowLayout: UICollectionViewFlowLayout {
     
-    var numbersInLine = 3
+//    列数, recommanding to set bigger than 1
+    let numbersInLine = 3
     var widthOfItem:CGFloat {
         var width = UIScreen.mainScreen().bounds.width
         width -= self.sectionInset.left
@@ -100,7 +101,7 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
         contentSize.width = self.collectionView!.bounds.width
         contentSize.height += self.sectionInset.top + self.sectionInset.bottom
         
-        _ = numbersOfItem / self.numbersInLine
+//        _ = numbersOfItem / self.numbersInLine
     
         var heightsOfRow:[CGFloat] = {
             var array = [CGFloat]()
