@@ -76,8 +76,8 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
             if indexOfLine > 0 {
                 //            第二行起，把所有列的前面的所有Item的高度和LineSpacing都加一次
                 for currentLine in 1...indexOfLine{
-                    let heightOfLassLine = self.heightsOfItem[(currentLine - 1) * self.numbersInLine + indexOfRow]
-                    y += heightOfLassLine
+                    let heightOfLastLine = self.heightsOfItem[(currentLine - 1) * self.numbersInLine + indexOfRow]
+                    y += heightOfLastLine
                     y += self.minimumLineSpacing
                 }
             }
@@ -101,13 +101,7 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
         contentSize.width = self.collectionView!.bounds.width
         contentSize.height += self.sectionInset.top + self.sectionInset.bottom
     
-        var heightsOfRow:[CGFloat] = {
-            var array = [CGFloat]()
-            for _ in 0..<self.numbersInLine{
-                array.append(CGFloat(0))
-            }
-            return array
-        }()
+        var heightsOfRow = [CGFloat](count: self.numbersInLine, repeatedValue: 0)
         for index in 0..<numbersOfItem{
         
             //        第几行
@@ -115,9 +109,8 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
             //        第几列
             let indexOfRow = index % self.numbersInLine
             
-            let heightOfLassLine = self.heightsOfItem[indexOfLine * self.numbersInLine + indexOfRow]
-            heightsOfRow[indexOfRow] += heightOfLassLine
-            heightsOfRow[indexOfRow] += self.minimumLineSpacing
+            let heightOfCurrentLine = self.heightsOfItem[indexOfLine * self.numbersInLine + indexOfRow]
+            heightsOfRow[indexOfRow] += heightOfCurrentLine + self.minimumLineSpacing
 
         }
         contentSize.height += heightsOfRow.maxElement()!
