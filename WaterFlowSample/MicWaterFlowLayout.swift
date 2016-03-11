@@ -113,7 +113,7 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
             heightsOfRow[indexOfRow] += heightOfCurrentLine + self.minimumLineSpacing
 
         }
-        contentSize.height += heightsOfRow.maxElement()!
+        contentSize.height += heightsOfRow.maxElement() ?? 0
         contentSize.height -= self.minimumLineSpacing
         if contentSize.height < self.collectionView!.contentSize.height{
             contentSize.height = self.collectionView!.contentSize.height
