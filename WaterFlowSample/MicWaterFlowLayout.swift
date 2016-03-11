@@ -100,8 +100,6 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
         let numbersOfItem = self.collectionView!.numberOfItemsInSection(0)
         contentSize.width = self.collectionView!.bounds.width
         contentSize.height += self.sectionInset.top + self.sectionInset.bottom
-        
-//        _ = numbersOfItem / self.numbersInLine
     
         var heightsOfRow:[CGFloat] = {
             var array = [CGFloat]()
@@ -122,8 +120,7 @@ class MicWaterFlowLayout: UICollectionViewFlowLayout {
             heightsOfRow[indexOfRow] += self.minimumLineSpacing
 
         }
-        let sortHeights: [CGFloat] = heightsOfRow.sort{ $0>$1 }
-        contentSize.height += sortHeights[0]
+        contentSize.height += heightsOfRow.maxElement()!
         contentSize.height -= self.minimumLineSpacing
         if contentSize.height < self.collectionView!.contentSize.height{
             contentSize.height = self.collectionView!.contentSize.height
